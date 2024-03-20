@@ -1,21 +1,18 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.github.fajaragungpramana.our"
+    namespace = "com.github.fajaragungpramana.our.core"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.github.fajaragungpramana.our"
         minSdk = 21
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -28,7 +25,7 @@ android {
         }
     }
     buildFeatures {
-        viewBinding = true
+        buildConfig = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -41,8 +38,6 @@ android {
 
 dependencies {
 
-    implementation(project(":common"))
-    implementation(project(":core"))
-    implementation(project(":widget"))
+
 
 }
