@@ -1,14 +1,14 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id(Plugin.LIBRARY)
+    id(Plugin.KOTLIN)
 }
 
 android {
     namespace = "com.github.fajaragungpramana.our.widget"
-    compileSdk = 34
+    compileSdk = Version.TARGET_SDK
 
     defaultConfig {
-        minSdk = 21
+        minSdk = Version.MIN_SDK
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -34,6 +34,8 @@ android {
 
 dependencies {
 
-    implementation("com.google.android.material:material:1.11.0")
+    api(Dependency.AndroidX.SPLASH_SCREEN)
+
+    api(Dependency.Google.MATERIAL)
 
 }

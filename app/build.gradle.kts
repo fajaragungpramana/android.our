@@ -1,19 +1,21 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    id(Plugin.APPLICATION)
+    id(Plugin.KOTLIN)
+    id(Plugin.KOTLIN_KAPT)
+    id(Plugin.HILT)
+    id(Plugin.NAVIGATION)
 }
 
 android {
     namespace = "com.github.fajaragungpramana.our"
-    compileSdk = 34
+    compileSdk = Version.TARGET_SDK
 
     defaultConfig {
         applicationId = "com.github.fajaragungpramana.our"
-        minSdk = 21
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Version.MIN_SDK
+        targetSdk = Version.TARGET_SDK
+        versionCode = Version.VERSION_CODE
+        versionName = Version.VERSION_NAME
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,4 +47,22 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":widget"))
 
+    implementation(Dependency.AndroidX.ACTIVITY_KTX)
+    implementation(Dependency.AndroidX.NAVIGATION_FRAGMENT_KTX)
+    implementation(Dependency.AndroidX.NAVIGATION_UI_KTX)
+
+    implementation(Dependency.Common.COIL)
+
+    implementation(Dependency.Google.HILT)
+    kapt(Dependency.Google.HILT_COMPILER)
+
+    testImplementation(Dependency.AndroidX.CORE_TESTING)
+    testImplementation(Dependency.Mockito.MOCKITO_CORE)
+    testImplementation(Dependency.Mockito.MOCKITO_INLINE)
+    testImplementation(Dependency.JetBrains.COROUTINE_TEST)
+
+}
+
+kapt {
+    correctErrorTypes = true
 }
