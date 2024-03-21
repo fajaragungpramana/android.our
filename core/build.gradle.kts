@@ -23,6 +23,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            buildConfigField("String", Config.API_BASE_URL, "\"${Config.API_BASE_URL_VALUE}\"")
+        }
+        debug {
+            buildConfigField("String", Config.API_BASE_URL, "\"${Config.API_BASE_URL_VALUE}\"")
         }
     }
     buildFeatures {
