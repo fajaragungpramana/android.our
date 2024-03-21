@@ -7,12 +7,17 @@ import android.view.View
 import android.view.animation.AnticipateInterpolator
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.NavDestination
+import androidx.navigation.fragment.NavHostFragment
+import com.github.fajaragungpramana.our.R
 import com.github.fajaragungpramana.our.common.app.AppActivity
 import com.github.fajaragungpramana.our.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppActivity<ActivityMainBinding>() {
+
+    private val navigationController by lazy { supportFragmentManager.findFragmentById(R.id.fcv_main_container) as NavHostFragment }
 
     private var keep = true
 
@@ -47,6 +52,16 @@ class MainActivity : AppActivity<ActivityMainBinding>() {
 
     private fun initView() {
         setSupportActionBar(viewBinding.mtlMain)
+        viewBinding.mtlMain.setNavigationOnClickListener { navigationController.navController.navigateUp() }
+        navigationController.navController.addOnDestinationChangedListener { _, destination, _ ->
+            initToolbarTitle(destination)
+        }
+    }
+
+    private fun initToolbarTitle(navDestination: NavDestination) {
+        supportActionBar?.title = when (navDestination.id) {
+            else -> ""
+        }
     }
 
     private companion object {

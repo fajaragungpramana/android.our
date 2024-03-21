@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Our</string>
+    <string name="login">Login</string>
+    <string name="login_description">Enter with your account to continue</string>
+    <string name="email">Email</string>
+    <string name="name_mail_com">name@mail.com</string>
+    <string name="password">Password</string>
+    <string name="password_plc">************</string>
 </resources>
