@@ -39,6 +39,12 @@ class OurFloatingTextField(context: Context, attrs: AttributeSet?) : FrameLayout
         }
         get() = textInputEditText.inputType
 
+    var error: String?
+        set(value) {
+            textInputLayout.error = value
+        }
+        get() = textInputLayout.error.toString()
+
     init {
         View.inflate(context, R.layout.text_field_floating_our, this)
 
@@ -58,7 +64,7 @@ class OurFloatingTextField(context: Context, attrs: AttributeSet?) : FrameLayout
 
     fun addTextChangedListener(value: (String) -> Unit) {
         textInputEditText.addTextChangedListener {
-            textInputLayout.error = when (inputType) {
+            error = when (inputType) {
 
                 // Person Name
                 0x00000061 -> if (text.length < 4)

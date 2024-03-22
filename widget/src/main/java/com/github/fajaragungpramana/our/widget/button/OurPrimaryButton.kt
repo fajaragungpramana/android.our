@@ -49,4 +49,8 @@ class OurPrimaryButton(context: Context, attrs: AttributeSet) : FrameLayout(cont
         }
     }
 
+    fun setOnClickListener(view: (View) -> Unit) {
+        materialButton.setOnClickListener { view.invoke(it) }
+    }
+
 }
