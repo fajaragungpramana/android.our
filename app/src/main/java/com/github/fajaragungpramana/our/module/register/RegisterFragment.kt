@@ -1,15 +1,24 @@
 package com.github.fajaragungpramana.our.module.register
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.github.fajaragungpramana.our.widget.R
 import com.github.fajaragungpramana.our.common.app.AppFragment
+import com.github.fajaragungpramana.our.common.contract.AppState
+import com.github.fajaragungpramana.our.core.app.AppResultState
+import com.github.fajaragungpramana.our.core.data.remote.auth.request.RegisterRequest
 import com.github.fajaragungpramana.our.databinding.FragmentRegisterBinding
+import com.github.fajaragungpramana.our.widget.extension.snackBar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RegisterFragment : AppFragment<FragmentRegisterBinding>() {
+class RegisterFragment : AppFragment<FragmentRegisterBinding>(), AppState {
 
     private val viewModel: RegisterViewModel by viewModels()
 
@@ -21,20 +30,54 @@ class RegisterFragment : AppFragment<FragmentRegisterBinding>() {
         initOnClick()
     }
 
+    override fun onStateObserver() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.state.collectLatest {
+
+                when (it) {
+
+                    is RegisterState.OnResultState -> {
+                        when (it.state) {
+
+                            is AppResultState.InvalidName ->
+                                viewBinding.oftName.error = getString(R.string.error_name)
+
+                            is AppResultState.InvalidEmail ->
+                                viewBinding.oftEmail.error = getString(R.string.error_email)
+
+                            is AppResultState.InvalidPassword ->
+                                viewBinding.oftPassword.error = getString(R.string.error_password)
+
+                            else -> {}
+
+                        }
+                    }
+
+                    is RegisterState.OnLoadingRegister ->
+                        viewBinding.opbRegister.isLoading = it.isLoading
+
+                    is RegisterState.OnSuccessRegister -> {
+                        viewBinding.root.snackBar(getString(com.github.fajaragungpramana.our.R.string.register_successfully))
+                        findNavController().navigateUp()
+                    }
+
+                    is RegisterState.OnMessage ->
+                        viewBinding.root.snackBar(it.message)
+
+                }
+
+            }
+        }
+    }
+
     private fun initTextField() {
         viewBinding.apply {
 
-            oftName.addTextChangedListener {
+            oftName.addTextChangedListener { isEnableRegister() }
 
-            }
+            oftEmail.addTextChangedListener { isEnableRegister() }
 
-            oftEmail.addTextChangedListener {
-
-            }
-
-            oftPassword.addTextChangedListener {
-
-            }
+            oftPassword.addTextChangedListener { isEnableRegister() }
 
         }
     }
@@ -44,7 +87,33 @@ class RegisterFragment : AppFragment<FragmentRegisterBinding>() {
 
             oatRegister.setOnClickListener { findNavController().navigateUp() }
 
+            opbRegister.setOnClickListener {
+                val name = oftName.text
+                val email = oftEmail.text
+                val password = oftPassword.text
+
+                viewModel.setEvent(
+                    RegisterEvent.OnRegister(
+                        request = RegisterRequest(
+                            name = name,
+                            email = email,
+                            password = password
+                        )
+                    )
+                )
+            }
+
         }
+    }
+
+    private fun isEnableRegister() {
+        val name = viewBinding.oftName.text
+        val email = viewBinding.oftEmail.text
+        val password = viewBinding.oftPassword.text
+
+        viewBinding.opbRegister.isEnable = name.length >= 4 &&
+                Patterns.EMAIL_ADDRESS.matcher(email).matches() &&
+                password.length >= 8
     }
 
 }
