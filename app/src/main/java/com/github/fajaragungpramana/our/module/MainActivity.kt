@@ -55,6 +55,7 @@ class MainActivity : AppActivity<ActivityMainBinding>() {
         viewBinding.mtlMain.setNavigationOnClickListener { navigationController.navController.navigateUp() }
         navigationController.navController.addOnDestinationChangedListener { _, destination, _ ->
             initToolbarTitle(destination)
+            initToolbarBack(destination)
         }
     }
 
@@ -62,6 +63,16 @@ class MainActivity : AppActivity<ActivityMainBinding>() {
         supportActionBar?.title = when (navDestination.id) {
             else -> ""
         }
+    }
+
+    private fun initToolbarBack(navDestination: NavDestination) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(
+            when (navDestination.id) {
+                R.id.login_fragment -> false
+
+                else -> true
+            }
+        )
     }
 
     private companion object {

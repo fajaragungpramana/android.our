@@ -8,4 +8,8 @@
     <string name="password_plc">************</string>
     <string name="register">Register</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register_description">Come join with us</string>
+    <string name="name">Name</string>
+    <string name="john_doe">John Doe</string>
+    <string name="have_an_account">Have an account?</string>
 </resources>
