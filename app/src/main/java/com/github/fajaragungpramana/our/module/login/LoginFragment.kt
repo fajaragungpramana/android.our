@@ -13,7 +13,21 @@ class LoginFragment : AppFragment<FragmentLoginBinding>() {
         FragmentLoginBinding.inflate(layoutInflater, container, false)
 
     override fun onViewCreated(savedInstanceState: Bundle?) {
+        initTextField()
+    }
 
+    private fun initTextField() {
+        viewBinding.apply {
+
+            oftEmail.addTextChangedListener {
+
+            }
+
+            oftPassword.addTextChangedListener {
+
+            }
+
+        }
     }
 
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_name">Name min 4 character</string>
+    <string name="error_email">Email invalid</string>
+    <string name="error_password">Password min 8 character</string>
+</resources>

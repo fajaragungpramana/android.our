@@ -25,17 +25,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_40"
-        app:floatingInputType="textEmailAddress"
         app:hintFloating="@string/email"
-        app:hintPlaceHolder="@string/name_mail_com" />
+        app:hintPlaceHolder="@string/name_mail_com"
+        app:inputType="textEmailAddress" />
 
     <com.github.fajaragungpramana.our.widget.textfield.OurFloatingTextField
         android:id="@+id/oft_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_8"
-        app:floatingInputType="textPassword"
         app:hintFloating="@string/password"
-        app:hintPlaceHolder="@string/password_plc" />
+        app:hintPlaceHolder="@string/password_plc"
+        app:inputType="textPassword" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.github.fajaragungpramana.our.widget.button.OurPrimaryButton
+        android:id="@+id/opb_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:enable="false"
+        app:text="@string/login" />
+
+    <com.github.fajaragungpramana.our.widget.text.OurAuthText
+        android:id="@+id/oat_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="@dimen/dimen_16"
+        app:end="@string/register"
+        app:start="@string/don_t_have_an_account" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
