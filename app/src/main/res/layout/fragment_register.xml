@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/dimen_16">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:textSize="@dimen/text_20" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextRegular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register_description"
+            android:textSize="@dimen/text_14" />
+
+        <com.github.fajaragungpramana.our.widget.textfield.OurFloatingTextField
+            android:id="@+id/oft_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_40"
+            app:hintFloating="@string/name"
+            app:hintPlaceHolder="@string/john_doe"
+            app:inputType="textPersonName" />
+
+        <com.github.fajaragungpramana.our.widget.textfield.OurFloatingTextField
+            android:id="@+id/oft_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            app:hintFloating="@string/email"
+            app:hintPlaceHolder="@string/name_mail_com"
+            app:inputType="textEmailAddress" />
+
+        <com.github.fajaragungpramana.our.widget.textfield.OurFloatingTextField
+            android:id="@+id/oft_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            app:hintFloating="@string/password"
+            app:hintPlaceHolder="@string/password_plc"
+            app:inputType="textPassword" />
+
+        <com.github.fajaragungpramana.our.widget.button.OurPrimaryButton
+            android:id="@+id/opb_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
+            app:enable="false"
+            app:text="@string/register" />
+
+        <com.github.fajaragungpramana.our.widget.text.OurAuthText
+            android:id="@+id/oat_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="@dimen/dimen_16"
+            app:end="@string/login"
+            app:start="@string/have_an_account" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Our</string>
+    <string name="login">Login</string>
+    <string name="login_description">Enter with your account to continue</string>
+    <string name="email">Email</string>
+    <string name="name_mail_com">name@mail.com</string>
+    <string name="password">Password</string>
+    <string name="password_plc">************</string>
+    <string name="register">Register</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register_description">Come join with us</string>
+    <string name="name">Name</string>
+    <string name="john_doe">John Doe</string>
+    <string name="have_an_account">Have an account?</string>
+    <string name="register_successfully">Register Successfully</string>
 </resources>
