@@ -30,13 +30,11 @@ class RegisterViewModel @Inject constructor(private val authUseCase: AuthUseCase
     private fun onRegister(registerRequest: RegisterRequest): Job = viewModelScope.launch {
         _state.send(RegisterState.OnLoadingRegister(true))
         authUseCase.register(registerRequest).collectLatest {
+            _state.send(RegisterState.OnLoadingRegister(false))
+
             when (it) {
                 is AppResult.State -> _state.send(RegisterState.OnResultState(it.state))
-                is AppResult.Success -> {
-                    _state.send(RegisterState.OnLoadingRegister(false))
-
-                    _state.send(RegisterState.OnSuccessRegister)
-                }
+                is AppResult.Success -> _state.send(RegisterState.OnSuccessRegister)
                 is AppResult.Error -> _state.send(RegisterState.OnMessage(it.message))
             }
         }
