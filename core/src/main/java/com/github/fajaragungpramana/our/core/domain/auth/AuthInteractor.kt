@@ -18,7 +18,6 @@ class AuthInteractor @Inject constructor(private val authRepository: IAuthReposi
         channelFlow {
             authRepository.register(registerRequest).collectLatest {
                 when (it) {
-                    is AppResult.State -> send(AppResult.State(it.state))
                     is AppResult.Success -> send(AppResult.Success(Register.mapToObject(it.data)))
                     is AppResult.Error -> send(AppResult.Error(it.message, it.code))
                 }
@@ -28,7 +27,6 @@ class AuthInteractor @Inject constructor(private val authRepository: IAuthReposi
     override suspend fun login(loginRequest: LoginRequest): Flow<AppResult<Login>> = channelFlow {
         authRepository.login(loginRequest).collectLatest {
             when (it) {
-                is AppResult.State -> send(AppResult.State(it.state))
                 is AppResult.Success -> send(AppResult.Success(Login.mapToObject(it.data)))
                 is AppResult.Error -> send(AppResult.Error(it.message, it.code))
             }
