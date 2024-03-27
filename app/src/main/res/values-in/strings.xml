@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Our</string>
+    <string name="login">Masuk</string>
+    <string name="login_description">Masuk dengan akun Kamu untuk melanjutkan</string>
+    <string name="email">Email</string>
+    <string name="name_mail_com">nama@mail.com</string>
+    <string name="password">Kata sandi</string>
+    <string name="password_plc">************</string>
+    <string name="register">Daftar</string>
+    <string name="don_t_have_an_account">Belum memiliki akun?</string>
+    <string name="register_description">Ayo bergabung dengan kami</string>
+    <string name="name">Nama</string>
+    <string name="john_doe">Asep Jambul</string>
+    <string name="have_an_account">Sudah memiliki akun?</string>
+    <string name="register_successfully">Pendaftaran Berhasil</string>
+</resources>

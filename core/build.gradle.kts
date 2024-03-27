@@ -51,6 +51,11 @@ dependencies {
     implementation(Dependency.Square.CONVERTER_GSON)
     implementation(Dependency.Square.LOGGING_INTERCEPTOR)
 
+    testApi(Dependency.AndroidX.CORE_TESTING)
+    testApi(Dependency.Mockito.MOCKITO_CORE)
+    testApi(Dependency.Mockito.MOCKITO_INLINE)
+    testApi(Dependency.JetBrains.COROUTINE_TEST)
+
 }
 
 kapt {

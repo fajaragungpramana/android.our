@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_name">Nama min 4 karakter</string>
+    <string name="error_email">Email tidak benar</string>
+    <string name="error_password">Kata sandi min 8 karakter</string>
+</resources>

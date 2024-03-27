@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="OurFloatingTextField">
+        <attr name="hintFloating" format="string|reference" />
+        <attr name="hintPlaceHolder" format="string|reference" />
+        <attr name="inputType">
+            <flag name="textEmailAddress" value="0x00000021" />
+            <flag name="textPersonName" value="0x00000061" />
+            <flag name="textPassword" value="0x00000081" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="OurPrimaryButton">
+        <attr name="enable" format="boolean|reference" />
+        <attr name="text" format="string|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="OurAuthText">
+        <attr name="start" format="string|reference" />
+        <attr name="end" format="string|reference" />
+    </declare-styleable>
+
+</resources>
