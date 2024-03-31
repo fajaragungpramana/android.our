@@ -33,4 +33,6 @@ class AuthInteractor @Inject constructor(private val authRepository: IAuthReposi
         }
     }
 
+    override suspend fun isLogin(): Boolean = authRepository.isLogin()
+
 }

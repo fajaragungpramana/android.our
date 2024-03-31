@@ -13,4 +13,6 @@ interface IAuthRepository {
 
     suspend fun login(loginRequest: LoginRequest): Flow<AppResult<LoginResponse>>
 
+    suspend fun isLogin(): Boolean
+
 }

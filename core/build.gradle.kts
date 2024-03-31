@@ -44,6 +44,8 @@ android {
 
 dependencies {
 
+    implementation(Dependency.AndroidX.DATA_STORE)
+
     implementation(Dependency.Google.HILT)
     kapt(Dependency.Google.HILT_COMPILER)
 

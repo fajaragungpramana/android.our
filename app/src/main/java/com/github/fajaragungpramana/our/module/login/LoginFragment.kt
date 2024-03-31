@@ -36,7 +36,10 @@ class LoginFragment : AppFragment<FragmentLoginBinding>(), AppState {
 
                     is LoginState.OnLoadingLogin -> viewBinding.opbLogin.isLoading = it.isLoading
 
-                    is LoginState.OnSuccessLogin -> {}
+                    is LoginState.OnSuccessLogin -> {
+                        val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
+                        findNavController().navigate(action)
+                    }
 
                     is LoginState.OnMessage -> viewBinding.root.snackBar(it.message)
 

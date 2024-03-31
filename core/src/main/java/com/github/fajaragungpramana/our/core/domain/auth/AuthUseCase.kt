@@ -13,4 +13,6 @@ interface AuthUseCase {
 
     suspend fun login(loginRequest: LoginRequest): Flow<AppResult<Login>>
 
+    suspend fun isLogin(): Boolean
+
 }

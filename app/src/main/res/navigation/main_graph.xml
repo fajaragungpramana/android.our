@@ -12,11 +12,19 @@
         <action
             android:id="@+id/action_login_fragment_to_register_fragment"
             app:destination="@id/register_fragment" />
+        <action
+            android:id="@+id/action_login_fragment_to_main_fragment"
+            app:destination="@id/main_fragment" />
     </fragment>
 
     <fragment
         android:id="@+id/register_fragment"
         android:name="com.github.fajaragungpramana.our.module.register.RegisterFragment"
         tools:layout="@layout/fragment_register" />
+
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="com.github.fajaragungpramana.our.module.main.MainFragment"
+        tools:layout="@layout/fragment_main" />
 
 </navigation>
