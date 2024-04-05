@@ -39,5 +39,6 @@ dependencies {
 
     api(Dependency.AndroidX.APP_COMPAT)
     api(Dependency.AndroidX.CORE_KTX)
+    implementation(Dependency.AndroidX.PAGING_RUNTIME_KTX)
 
 }
