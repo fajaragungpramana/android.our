@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen_16"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_story_name"
+        style="@style/TextBold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        android:textSize="@dimen/text_14"
+        tools:text="@string/unknown" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/aiv_story_photo"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:scaleType="fitXY" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_story_description"
+        style="@style/TextRegular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:textSize="@dimen/text_14"
+        tools:text="@string/unknown" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

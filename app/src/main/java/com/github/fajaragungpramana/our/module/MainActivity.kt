@@ -72,6 +72,8 @@ class MainActivity : AppActivity<ActivityMainBinding>() {
 
     private fun initToolbarTitle(navDestination: NavDestination) {
         supportActionBar?.title = when (navDestination.id) {
+            R.id.story_fragment -> getString(R.string.app_name)
+
             else -> ""
         }
     }

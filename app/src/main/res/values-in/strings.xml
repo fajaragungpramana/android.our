@@ -14,4 +14,5 @@
     <string name="john_doe">Asep Jambul</string>
     <string name="have_an_account">Sudah memiliki akun?</string>
     <string name="register_successfully">Pendaftaran Berhasil</string>
+    <string name="unknown">Tidak Diketahui</string>
 </resources>
