@@ -6,10 +6,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.github.fajaragungpramana.our.widget.R
 import com.github.fajaragungpramana.our.common.app.AppFragment
 import com.github.fajaragungpramana.our.common.contract.AppState
-import com.github.fajaragungpramana.our.core.app.AppResultState
 import com.github.fajaragungpramana.our.core.data.remote.auth.request.RegisterRequest
 import com.github.fajaragungpramana.our.databinding.FragmentRegisterBinding
 import com.github.fajaragungpramana.our.widget.extension.snackBar
@@ -35,23 +33,6 @@ class RegisterFragment : AppFragment<FragmentRegisterBinding>(), AppState {
             viewModel.state.collectLatest {
 
                 when (it) {
-
-                    is RegisterState.OnResultState -> {
-                        when (it.state) {
-
-                            is AppResultState.InvalidName ->
-                                viewBinding.oftName.error = getString(R.string.error_name)
-
-                            is AppResultState.InvalidEmail ->
-                                viewBinding.oftEmail.error = getString(R.string.error_email)
-
-                            is AppResultState.InvalidPassword ->
-                                viewBinding.oftPassword.error = getString(R.string.error_password)
-
-                            else -> {}
-
-                        }
-                    }
 
                     is RegisterState.OnLoadingRegister ->
                         viewBinding.opbRegister.isLoading = it.isLoading

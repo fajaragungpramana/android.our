@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.view.animation.AnticipateInterpolator
+import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavDestination
@@ -12,10 +13,13 @@ import androidx.navigation.fragment.NavHostFragment
 import com.github.fajaragungpramana.our.R
 import com.github.fajaragungpramana.our.common.app.AppActivity
 import com.github.fajaragungpramana.our.databinding.ActivityMainBinding
+import com.github.fajaragungpramana.our.module.login.LoginFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppActivity<ActivityMainBinding>() {
+
+    private val viewModel: MainViewModel by viewModels()
 
     private val navigationController by lazy { supportFragmentManager.findFragmentById(R.id.fcv_main_container) as NavHostFragment }
 
@@ -38,6 +42,11 @@ class MainActivity : AppActivity<ActivityMainBinding>() {
                 slideDown.doOnEnd { viewProvider.remove() }
 
                 slideDown.start()
+
+                if (viewModel.isLogin.value == true) {
+                    val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
+                    navigationController.navController.navigate(action)
+                }
             }
         }
 
@@ -45,6 +54,8 @@ class MainActivity : AppActivity<ActivityMainBinding>() {
     }
 
     override fun onCreated(savedInstanceState: Bundle?) {
+        viewModel.setEvent(MainEvent.OnLogin)
+
         initView()
 
         Handler(mainLooper).postDelayed({ keep = false }, DELAY)
@@ -68,7 +79,7 @@ class MainActivity : AppActivity<ActivityMainBinding>() {
     private fun initToolbarBack(navDestination: NavDestination) {
         supportActionBar?.setDisplayHomeAsUpEnabled(
             when (navDestination.id) {
-                R.id.login_fragment -> false
+                R.id.login_fragment, R.id.main_fragment -> false
 
                 else -> true
             }

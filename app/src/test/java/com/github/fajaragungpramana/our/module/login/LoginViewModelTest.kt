@@ -1,10 +1,10 @@
-package com.github.fajaragungpramana.our.module.register
+package com.github.fajaragungpramana.our.module.login
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.github.fajaragungpramana.our.core.app.AppResult
-import com.github.fajaragungpramana.our.core.data.remote.auth.request.RegisterRequest
+import com.github.fajaragungpramana.our.core.data.remote.auth.request.LoginRequest
 import com.github.fajaragungpramana.our.core.domain.auth.AuthUseCase
-import com.github.fajaragungpramana.our.core.domain.auth.model.Register
+import com.github.fajaragungpramana.our.core.domain.auth.model.Login
 import com.github.fajaragungpramana.our.rule.MainDispatcherRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
@@ -22,7 +22,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class RegisterViewModelTest {
+class LoginViewModelTest {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -33,29 +33,32 @@ class RegisterViewModelTest {
     @Mock
     private lateinit var authUseCase: AuthUseCase
 
-    private lateinit var viewModel: RegisterViewModel
+    private lateinit var viewModel: LoginViewModel
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        viewModel = RegisterViewModel(authUseCase)
+        viewModel = LoginViewModel(authUseCase)
     }
 
     @Test
-    fun `on register success should return state OnSuccessRegister`() = runTest {
-        val registerRequest = RegisterRequest(name = "Fajar Agung Pramana", email = "fajar.agungpramana@gmail.com", password = "fajar123")
+    fun `on login success should return state OnSuccessLogin`() = runTest {
+        val loginRequest =
+            LoginRequest(email = "fajar.agungpramana01@gmail.com", password = "fajar123")
+        val login = Login(token = "this is token")
 
-        Mockito.`when`(authUseCase.register(registerRequest)).thenReturn(flow { emit(AppResult.Success(Register(message = "User Created"))) })
-        viewModel.setEvent(RegisterEvent.OnRegister(registerRequest))
+        Mockito.`when`(authUseCase.login(loginRequest))
+            .thenReturn(flow { emit(AppResult.Success(login)) })
+        viewModel.setEvent(LoginEvent.OnLogin(loginRequest))
 
         val stateLoadingTrue = viewModel.state.first()
-        Assert.assertTrue((stateLoadingTrue as RegisterState.OnLoadingRegister).isLoading)
+        Assert.assertTrue((stateLoadingTrue as LoginState.OnLoadingLogin).isLoading)
 
         val stateLoadingFalse = viewModel.state.first()
-        Assert.assertFalse((stateLoadingFalse as RegisterState.OnLoadingRegister).isLoading)
+        Assert.assertFalse((stateLoadingFalse as LoginState.OnLoadingLogin).isLoading)
 
         val stateSuccess = viewModel.state.first()
-        Assert.assertTrue(stateSuccess is RegisterState.OnSuccessRegister)
+        Assert.assertTrue(stateSuccess is LoginState.OnSuccessLogin)
     }
 
 }

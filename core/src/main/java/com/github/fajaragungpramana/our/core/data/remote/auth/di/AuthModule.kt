@@ -1,5 +1,6 @@
 package com.github.fajaragungpramana.our.core.data.remote.auth.di
 
+import com.github.fajaragungpramana.our.core.data.local.CacheManager
 import com.github.fajaragungpramana.our.core.data.remote.auth.AuthRepository
 import com.github.fajaragungpramana.our.core.data.remote.auth.AuthService
 import com.github.fajaragungpramana.our.core.data.remote.auth.IAuthRepository
@@ -18,7 +19,9 @@ object AuthModule {
         retrofit.create(AuthService::class.java)
 
     @Provides
-    fun provideAuthRepository(authService: AuthService): IAuthRepository =
-        AuthRepository(authService)
+    fun provideAuthRepository(
+        authService: AuthService,
+        cacheManager: CacheManager
+    ): IAuthRepository = AuthRepository(authService, cacheManager)
 
 }

@@ -33,7 +33,6 @@ class RegisterViewModel @Inject constructor(private val authUseCase: AuthUseCase
             _state.send(RegisterState.OnLoadingRegister(false))
 
             when (it) {
-                is AppResult.State -> _state.send(RegisterState.OnResultState(it.state))
                 is AppResult.Success -> _state.send(RegisterState.OnSuccessRegister)
                 is AppResult.Error -> _state.send(RegisterState.OnMessage(it.message))
             }
