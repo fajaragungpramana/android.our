@@ -1,6 +1,5 @@
 package com.github.fajaragungpramana.our.module.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,6 @@ class StoryAdapter :
     inner class ViewHolder(itemView: View) : AppRecyclerViewHolder<Story>(itemView) {
 
         override fun bindItem(item: Story, position: Int) {
-            Log.d("FFFF", "HELLO $item")
             viewBinding.apply {
                 mtvStoryName.text = item.name.orEmpty()
                 aivStoryPhoto.load(item.photoUrl)

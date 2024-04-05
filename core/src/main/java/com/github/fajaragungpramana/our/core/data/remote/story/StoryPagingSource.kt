@@ -15,7 +15,7 @@ class StoryPagingSource @Inject constructor(
         val page = params.key ?: 1
 
         val listStoryResponse = storyDataSource.getListStory(
-            getStoryRequest.copy(page = 1)
+            getStoryRequest.copy(page = page)
         ).body()?.listStory.orEmpty()
         LoadResult.Page(
             data = listStoryResponse,
