@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
-    private val authService: AuthService,
+    private val authDataSource: IAuthDataSource,
     private val cacheManager: CacheManager
 ) : IAuthRepository {
 
@@ -22,7 +22,7 @@ class AuthRepository @Inject constructor(
 
     override suspend fun register(registerRequest: RegisterRequest): Flow<AppResult<RegisterResponse>> =
         connection {
-            val response = authService.register(registerRequest)
+            val response = authDataSource.register(registerRequest)
             if (response.isSuccessful)
                 AppResult.Success(response.body())
             else {
@@ -33,7 +33,7 @@ class AuthRepository @Inject constructor(
 
     override suspend fun login(loginRequest: LoginRequest): Flow<AppResult<LoginResponse>> =
         connection {
-            val response = authService.login(loginRequest)
+            val response = authDataSource.login(loginRequest)
             if (response.isSuccessful) {
                 val body = response.body()
                 cacheManager.save(CacheManager.ACCESS_TOKEN, body?.loginResult?.token.orEmpty())

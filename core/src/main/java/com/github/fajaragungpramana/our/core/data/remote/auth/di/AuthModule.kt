@@ -2,7 +2,7 @@ package com.github.fajaragungpramana.our.core.data.remote.auth.di
 
 import com.github.fajaragungpramana.our.core.data.local.CacheManager
 import com.github.fajaragungpramana.our.core.data.remote.auth.AuthRepository
-import com.github.fajaragungpramana.our.core.data.remote.auth.AuthService
+import com.github.fajaragungpramana.our.core.data.remote.auth.IAuthDataSource
 import com.github.fajaragungpramana.our.core.data.remote.auth.IAuthRepository
 import dagger.Module
 import dagger.Provides
@@ -15,13 +15,13 @@ import retrofit2.Retrofit
 object AuthModule {
 
     @Provides
-    fun provideAuthService(retrofit: Retrofit): AuthService =
-        retrofit.create(AuthService::class.java)
+    fun provideAuthDataSource(retrofit: Retrofit): IAuthDataSource =
+        retrofit.create(IAuthDataSource::class.java)
 
     @Provides
     fun provideAuthRepository(
-        authService: AuthService,
+        authDataSource: IAuthDataSource,
         cacheManager: CacheManager
-    ): IAuthRepository = AuthRepository(authService, cacheManager)
+    ): IAuthRepository = AuthRepository(authDataSource, cacheManager)
 
 }
