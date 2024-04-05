@@ -1,7 +1,6 @@
 package com.github.fajaragungpramana.our.module.story
 
 import android.os.Bundle
-import android.util.Log
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -30,9 +29,7 @@ class StoryFragment : AppFragment<FragmentStoryBinding>(), AppState {
             viewModel.state.collectLatest {
 
                 when (it) {
-                    is StoryState.OnStoryData -> {
-                        Log.d("FFFF", "HELLO ${it.pagingData}")
-                    }
+                    is StoryState.OnStoryData -> {}
                 }
 
             }
