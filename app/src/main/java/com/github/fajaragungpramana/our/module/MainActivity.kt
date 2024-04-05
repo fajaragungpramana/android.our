@@ -44,7 +44,7 @@ class MainActivity : AppActivity<ActivityMainBinding>() {
                 slideDown.start()
 
                 if (viewModel.isLogin.value == true) {
-                    val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
+                    val action = LoginFragmentDirections.actionLoginFragmentToStoryFragment()
                     navigationController.navController.navigate(action)
                 }
             }
@@ -79,7 +79,7 @@ class MainActivity : AppActivity<ActivityMainBinding>() {
     private fun initToolbarBack(navDestination: NavDestination) {
         supportActionBar?.setDisplayHomeAsUpEnabled(
             when (navDestination.id) {
-                R.id.login_fragment, R.id.main_fragment -> false
+                R.id.login_fragment, R.id.story_fragment -> false
 
                 else -> true
             }

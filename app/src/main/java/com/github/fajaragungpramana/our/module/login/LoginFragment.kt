@@ -37,7 +37,7 @@ class LoginFragment : AppFragment<FragmentLoginBinding>(), AppState {
                     is LoginState.OnLoadingLogin -> viewBinding.opbLogin.isLoading = it.isLoading
 
                     is LoginState.OnSuccessLogin -> {
-                        val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
+                        val action = LoginFragmentDirections.actionLoginFragmentToStoryFragment()
                         findNavController().navigate(action)
                     }
 
