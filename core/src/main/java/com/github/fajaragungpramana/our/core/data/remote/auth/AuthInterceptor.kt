@@ -11,16 +11,19 @@ import javax.inject.Inject
 
 class AuthInterceptor @Inject constructor(private val cacheManager: CacheManager) : Interceptor {
 
+    private var accessToken: String? = ""
+
+    init {
+        CoroutineScope(Dispatchers.IO).launch {
+            accessToken = cacheManager.get(CacheManager.ACCESS_TOKEN).first()
+        }
+    }
+
     override fun intercept(chain: Interceptor.Chain): Response {
         val requestBuilder = chain.request().newBuilder()
 
-        CoroutineScope(Dispatchers.IO).launch {
-
-            val accessToken = cacheManager.get(CacheManager.ACCESS_TOKEN).first()
-            if (!accessToken.isNullOrEmpty())
-                requestBuilder.addHeader("Authorization", "Bearer $accessToken")
-
-        }
+        if (!accessToken.isNullOrEmpty())
+            requestBuilder.addHeader("Authorization", "Bearer ${accessToken.orEmpty()}")
 
         return chain.proceed(requestBuilder.build())
     }

@@ -8,7 +8,7 @@ import retrofit2.http.QueryMap
 
 interface IStoryDataSource {
 
-    @GET("/stories")
+    @GET("stories")
     suspend fun getListStory(@QueryMap getStoryRequest: GetStoryRequest): Response<ListStoryResponse>
 
 }
